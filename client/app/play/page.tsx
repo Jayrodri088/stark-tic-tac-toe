@@ -227,7 +227,6 @@ const TicTacToe = () => {
           </motion.button>
         )}
 
-        {/* Chat Modal */}
         <ChatModal
           isOpen={isChatOpen}
           onClose={() => setIsChatOpen(false)}

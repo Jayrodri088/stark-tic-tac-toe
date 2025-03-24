@@ -20,8 +20,8 @@ const ChatModal = ({ isOpen, onClose }: ChatModalProps) => {
     { text: "Hi there!", sender: "O", timestamp: new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }) },
   ]);
   const [newMessage, setNewMessage] = useState("");
-  const [currentPlayer] = useState<"X" | "O">("X"); // For demo purposes
-  const messagesEndRef = useRef<HTMLDivElement>(null); // Ref to scroll to the bottom
+  const [currentPlayer] = useState<"X" | "O">("X");
+  const messagesEndRef = useRef<HTMLDivElement>(null); 
 
   const getModalStyles = () => {
     if (theme === 'vanilla') {
@@ -97,7 +97,6 @@ const ChatModal = ({ isOpen, onClose }: ChatModalProps) => {
     setNewMessage("");
   };
 
-  // Scroll to the bottom whenever messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -110,7 +109,6 @@ const ChatModal = ({ isOpen, onClose }: ChatModalProps) => {
       className={`fixed top-1/4 right-4 lg:w-[450px] lg:h-[550px] md:w-[400px] md:h-[500px] w-[300px] h-[400px] ${styles.className} rounded-3xl p-4 flex flex-col shadow-lg z-50`}
       style={styles.style}
     >
-      {/* Header with Title and Close Icon */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Chat</h2>
         <motion.button
@@ -124,7 +122,6 @@ const ChatModal = ({ isOpen, onClose }: ChatModalProps) => {
         </motion.button>
       </div>
 
-      {/* Chat Messages */}
       <div
         className="flex-1 overflow-y-auto mb-3 space-y-4 scrollbar-hide"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -153,7 +150,6 @@ const ChatModal = ({ isOpen, onClose }: ChatModalProps) => {
                 message.sender === "X" ? styles.xMessage.style : styles.oMessage.style
               }
             >
-              {/* Tail for chat bubble */}
               <div
                 className={`absolute bottom-0 w-3 h-3 ${
                   message.sender === "X"
@@ -177,7 +173,6 @@ const ChatModal = ({ isOpen, onClose }: ChatModalProps) => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input and Send Button */}
       <div className="flex gap-2">
         <motion.input
           type="text"
